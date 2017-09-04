@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Contact
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+
+<ion-card>
+  <ion-card-header>
+    Explore Nearby
+  </ion-card-header>
+
+  <ion-list>
+    <button ion-item (click)="showTrend('Asaltos')">
+        <ion-icon name="trending-up">1234</ion-icon>
+      Asalto
+    </button>
+
+    <button ion-item (click)="showTrend('Secuestros')">
+        <ion-icon name="trending-up">350</ion-icon>
+      Secuestros
+    </button>
+
+    <button ion-item (click)="showTrend('carjackings')">
+        <ion-icon name="trending-up">200</ion-icon>
+      Carjackings
+    </button>
+
+    <button ion-item (click)="showTrend('tirotes')">
+        <ion-icon name="trending-up">100</ion-icon>
+      Tiroteos
+    </button>
+
+
+  </ion-list>
+</ion-card>
+  
+
+</ion-content>

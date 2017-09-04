@@ -1,0 +1,8 @@
+{
+  "name": "CrimeReport",
+  "app_id": "fc94a06d",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

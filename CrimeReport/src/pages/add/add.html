@@ -1,0 +1,70 @@
+<!--
+  Generated template for the AddPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>add</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+<ion-list>
+  <ion-item>
+      Location
+    <ion-icon name="ios-locate-outline" item-end></ion-icon>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Tipo Evento</ion-label>
+    <ion-select [(ngModel)]="eventType" cancelText="cancelar" okText="Listo!">
+      
+      <ion-option value="option1">value1</ion-option>
+      <ion-option value="option2">value2</ion-option>
+      <ion-option value="option3">value3</ion-option>
+      <ion-option value="option4">value4</ion-option>
+      <ion-option value="option5">value5</ion-option>
+      <ion-option value="option6">value6</ion-option>
+      <ion-option value="option7">value7</ion-option>
+      <ion-option value="option8">value8</ion-option>
+      <ion-option value="option9">value9</ion-option>
+      <ion-option value="option10">value10</ion-option>
+      <ion-option value="option11">value11</ion-option>
+      <ion-option value="option12">value12</ion-option>
+      <ion-option value="option13">value13</ion-option>
+      <ion-option value="option14">value14</ion-option>
+      <ion-option value="option15">value15</ion-option>
+      <ion-option value="option16">value16</ion-option>
+      
+
+    
+    </ion-select>
+  </ion-item>
+</ion-list>
+
+<ion-item (click)='openCamera()'>
+      Picture/Video
+    <ion-icon name="ios-reverse-camera-outline" item-end></ion-icon>
+    <ion-icon name="ios-videocam-outline" item-end></ion-icon>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Description</ion-label>
+    <ion-textarea placeholder="Enter a description"></ion-textarea>
+  </ion-item>
+
+<button (click)='cancel()' ion-button full>Save</button>
+
+</ion-content>
