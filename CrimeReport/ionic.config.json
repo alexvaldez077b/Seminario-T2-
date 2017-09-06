@@ -1,6 +1,6 @@
 {
   "name": "CrimeReport",
-  "app_id": "fc94a06d",
+  "app_id": "4f5154a2",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
