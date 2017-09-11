@@ -16,10 +16,11 @@ export class HomePage {
 
   Add(){
   	console.log("Add event");
-  	
-  	let modal = this.navCtrl.push(AddPage);
-    
-    
+
+  	//let modal =
+    this.navCtrl.push(AddPage);
+
+
   }
 
 }

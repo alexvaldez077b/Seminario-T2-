@@ -14,7 +14,8 @@ export class ContactPage {
   }
 
   showTrend(data){
-  	let modal = this.navCtrl.push(DetailTrendPage, {data: data});
+  	//let modal =
+    this.navCtrl.push(DetailTrendPage, {data: data});
   }
 
 }
