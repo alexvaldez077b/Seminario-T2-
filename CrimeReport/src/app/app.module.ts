@@ -22,6 +22,7 @@ import {SettingsPage} from '../pages/settings/settings';
 import { DetailTrendPage } from '../pages/detail-trend/detail-trend'; //DetailTrendPage
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { UsersProvider } from '../providers/users/users';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SplashScreen,
     Geolocation,
     GoogleMaps,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UsersProvider
   ]
 })
 export class AppModule {}

@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { NavController   } from 'ionic-angular';
 import { AddPage } from '../add/add';
 
-import { Http,RequestOptions,Headers   } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+import {UsersProvider} from "../../providers/users/users";
 
 @Component({
   selector: 'page-home',
@@ -13,25 +13,11 @@ import 'rxjs/add/operator/map';
 
 export class HomePage {
   posts:any;
-  constructor(public navCtrl: NavController,public http: Http ) {
+  constructor(public navCtrl: NavController,public session: UsersProvider ) {
 
-    /*this.http.get('https://www.reddit.com/r/gifs/new/.json?limit=10').map(res => res.json()).subscribe(data => {
+    let currentUser = this.session.showCurrentUser();
 
-        this.posts = data.data.children;
-
-        console.log(this.posts);
-
-    });*/
-
-    let request = this.http.get('http://localhost:8000/attemp/user/password',  ).map(res => res.json()).subscribe(data => {
-
-        this.posts = data;
-
-        console.log(this.posts);
-
-    });
-
-    console.log(request);
+    console.info("HomePAge User: "+currentUser.name);
 
   }
 

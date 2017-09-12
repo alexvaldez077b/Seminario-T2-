@@ -8,7 +8,9 @@ import { Http,RequestOptions,Headers   } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { LoadingController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
+import {UsersProvider} from "../../providers/users/users";
 /**
  * Generated class for the LoginPage page.
  *
@@ -22,31 +24,53 @@ import { LoadingController } from 'ionic-angular';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
+  loading: any;
   username:string;
   password:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController,public alertCtrl: AlertController,public http: Http,public loadingCtrl: LoadingController, public user: UsersProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+
   }
 
   login(){
-    console.log('Login');
-    let loader = this.loadingCtrl.create({
-      content: "Please wait...",
-      duration: 3000
+
+    this.showLoading();
+
+    this.user.login({email: this.username, password: this.password}).subscribe(row => {
+      if (row.access) {
+        this.loading.dismiss();
+        this.navCtrl.setRoot(TabsPage);
+      } else {
+        this.showError("Access Denied");
+      }
+    },
+      error => {
+        this.showError(error);
+      });
+
+  }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
     });
-    loader.present();
-    this.http.get(`http://localhost:8000/attemp/${this.username}/${this.password}`,  ).map(res => res.json()).subscribe(data => {
+    this.loading.present();
+  }
 
+  showError(text) {
+    this.loading.dismiss();
 
-
-
+    let alert = this.alertCtrl.create({
+      title: 'Fail',
+      subTitle: text,
+      buttons: ['OK']
     });
-
+    alert.present(prompt);
   }
 
 }

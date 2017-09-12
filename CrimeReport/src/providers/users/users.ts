@@ -1,0 +1,109 @@
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
+
+import jQuery from "jquery";
+
+
+/*
+  Generated class for the UsersProvider provider.
+
+  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
+  for more info on providers and Angular DI.
+*/
+export class User {
+  name: string;
+  email: string;
+
+  constructor(name: string, email: string) {
+    this.name = name;
+    this.email = email;
+  }
+}
+
+
+@Injectable()
+export class UsersProvider {
+  currentUser: User;
+  token = '2e1iX4Cs8VTGx0NCDMtG2pFQ+Yne5iP8Ah8VkVs+9PI=';
+
+  constructor(public http: Http) {
+    console.log('Hello authProvider Provider');
+  }
+
+/*  login(username,password){
+    let response;
+
+
+
+
+
+  }*/
+
+  public login(credentials) {
+      if (credentials.email === null || credentials.password === null) {
+        return Observable.throw("Please insert credentials");
+      } else {
+        return Observable.create(observer => {
+          // At this point make a request to your backend to make a real check!
+
+          jQuery.ajax({
+
+            'method': 'post',
+            'url': 'http://127.0.0.1:8000/api/login',
+            'data': { _token: this.token,
+                      username: credentials.email,
+                      password: credentials.password },
+            success: (res)=>{
+
+              let data = JSON.parse(res);
+
+              if(data.access == true){
+                this.currentUser = new User(data.username, data.email);
+                console.log(this.currentUser);
+              }
+
+              observer.next(data);
+              observer.complete();
+
+            },
+            error: (x,y,z)=>{}
+          });
+
+
+        });
+      }
+    }
+
+  public register(credentials) {
+    if (credentials.email === null || credentials.password === null) {
+      return Observable.throw("Please insert credentials");
+    } else {
+      // At this point store the credentials to your backend!
+      return Observable.create(observer => {
+        observer.next(true);
+        observer.complete();
+      });
+    }
+  }
+
+  public getUserInfo() : User {
+    return this.currentUser;
+  }
+
+  public logout() {
+    return Observable.create(observer => {
+      this.currentUser = null;
+      observer.next(true);
+      observer.complete();
+    });
+  }
+
+  public showCurrentUser(){
+    return this.currentUser;
+  }
+
+
+}
