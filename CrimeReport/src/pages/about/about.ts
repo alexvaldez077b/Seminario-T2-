@@ -1,8 +1,10 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+
 import { Geolocation } from '@ionic-native/geolocation';
 
+import {NewsProvider} from "../../providers/news/news";
 
 declare var google;
 
@@ -17,7 +19,9 @@ export class AboutPage {
   position: {};
   coords:{};
 
-  constructor(public navCtrl: NavController,private geolocation: Geolocation) {
+  points: any;
+
+  constructor(public navCtrl: NavController,private geolocation: Geolocation, private news: NewsProvider) {
 
   }
 
@@ -34,17 +38,38 @@ export class AboutPage {
   }
 
   ngAfterViewInit() {
-    this.geolocation.getCurrentPosition().then((resp) => {
-      this.position = { 'lat': resp.coords.latitude,'lng': resp.coords.longitude};
 
-      console.log(this.position);
 
-      this.loadMap(resp)
-     // resp.coords.latitude
-     // resp.coords.longitude
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
+    this.news.getmapPoints().subscribe(row => {
+      if (row.error) {
+          //show error alert
+      } else {
+          this.points = row;
+          console.log(this.points);
+
+          this.geolocation.getCurrentPosition().then((resp) => {
+            this.position = { 'lat': resp.coords.latitude,'lng': resp.coords.longitude};
+
+            //console.log(this.position);
+
+            this.loadMap(resp)
+           // resp.coords.latitude
+           // resp.coords.longitude
+          }).catch((error) => {
+            console.log('Error getting location', error);
+          });
+
+      }
+    },
+      error => {
+
+      });;
+
+    console.log("this.points = ");
+    console.log(this.points);
+
+
+
 
 
 
@@ -73,25 +98,13 @@ export class AboutPage {
 
 
     /* Data points defined as a mixture of WeightedLocation and LatLng objects */
-    var heatMapData = [
 
-      new google.maps.LatLng(31.647153699999, -106.4455448),
-
-      new google.maps.LatLng(31.647153699999992, -106.4455448),
-      new google.maps.LatLng(31.647153699999993, -106.4455450),
-      new google.maps.LatLng(31.647153699999991, -106.4455453),
-      new google.maps.LatLng(31.647153699999990, -106.4455441),
-      new google.maps.LatLng(31.647153699999990, -106.4455485),
-      new google.maps.LatLng(31.647153699999985, -106.4455415),
-      new google.maps.LatLng(31.647153699999995, -106.4455448),
-      new google.maps.LatLng(31.647153699999970, -106.4455448),
-      new google.maps.LatLng(31.647153699999990, -106.4455448),
+    var heatMapData = this.points.map((value,i)=>{
+      return new google.maps.LatLng(value.lat,value.lng);
+    });
 
 
-
-    ];
-
-
+    console.log(heatMapData);
 
     let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
 

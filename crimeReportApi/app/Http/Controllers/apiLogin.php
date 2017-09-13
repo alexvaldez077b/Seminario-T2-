@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+
+use Illuminate\Support\Facades\DB;
+use App\News;
 class apiLogin extends Controller
 {
     public function login(Request $req){
@@ -27,6 +30,31 @@ class apiLogin extends Controller
             }
 
           }
+    }
+
+    function getNews(Request $req){
+      if($req->_token!="2e1iX4Cs8VTGx0NCDMtG2pFQ+Yne5iP8Ah8VkVs+9PI="){
+        return json_encode(array('error' => "InvalidArgumentException token" ));
+      }else {
+        $news = DB::table('news')->limit(50)->orderBy('at','desc')->get();
+        echo json_encode($news);
+      }
+
+    }
+
+    function getmappoints(Request $req){
+      if($req->_token!="2e1iX4Cs8VTGx0NCDMtG2pFQ+Yne5iP8Ah8VkVs+9PI="){
+        return json_encode(array('error' => "InvalidArgumentException token" ));
+      }else {
+        $news = DB::table('news')->limit(50)->orderBy('at','desc')->get();
+        $points = array();
+        foreach ($news as $row) {
+          array_push($points,  array('lat' => $row->lat , 'lng' => $row->lng ) );
+        }
+
+        echo json_encode($points);
+      }
+
     }
 
     function test(){

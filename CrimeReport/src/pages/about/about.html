@@ -10,5 +10,26 @@
 </ion-header>
 
 <ion-content>
+
+  <div padding>
+  <ion-segment [(ngModel)]="maps">
+    <ion-segment-button value="today">
+      Today
+    </ion-segment-button>
+    <ion-segment-button value="week">
+      This Week
+    </ion-segment-button>
+    <ion-segment-button value="month">
+      This Month
+    </ion-segment-button>
+  </ion-segment>
+</div>
+
+
+
+
+
+
+
   <div style=" width:100%; heigth:100%; " #map id="map"></div>
 </ion-content>

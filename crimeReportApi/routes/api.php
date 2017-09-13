@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 Route::post('/login','apiLogin@login');
+
+Route::get('/getnews','apiLogin@getNews');
+Route::get('/getmappoints','apiLogin@getmappoints');
 Route::get('/test','apiLogin@test');
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
 

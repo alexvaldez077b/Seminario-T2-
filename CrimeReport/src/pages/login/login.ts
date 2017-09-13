@@ -3,8 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs'
 
 
-
-import { Http,RequestOptions,Headers   } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { LoadingController } from 'ionic-angular';
@@ -25,10 +23,10 @@ import {UsersProvider} from "../../providers/users/users";
 })
 export class LoginPage {
   loading: any;
-  username:string;
-  password:string;
+  username:string = "alexvaldez077b@gmail.com";
+  password:string = "00Killer";
 
-  constructor(public navCtrl: NavController,public alertCtrl: AlertController,public http: Http,public loadingCtrl: LoadingController, public user: UsersProvider) {
+  constructor(public navCtrl: NavController,public alertCtrl: AlertController,public loadingCtrl: LoadingController, public user: UsersProvider) {
   }
 
   ionViewDidLoad() {

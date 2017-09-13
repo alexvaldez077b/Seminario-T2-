@@ -23,6 +23,7 @@ import { DetailTrendPage } from '../pages/detail-trend/detail-trend'; //DetailTr
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { UsersProvider } from '../providers/users/users';
+import { NewsProvider } from '../providers/news/news';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { UsersProvider } from '../providers/users/users';
     Geolocation,
     GoogleMaps,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UsersProvider
+    UsersProvider,
+    NewsProvider
   ]
 })
 export class AppModule {}

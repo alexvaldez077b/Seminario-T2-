@@ -29,6 +29,8 @@ export class UsersProvider {
   currentUser: User;
   token = '2e1iX4Cs8VTGx0NCDMtG2pFQ+Yne5iP8Ah8VkVs+9PI=';
 
+  url = "https://crime-report-api.000webhostapp.com/api/";
+
   constructor(public http: Http) {
     console.log('Hello authProvider Provider');
   }
@@ -50,27 +52,26 @@ export class UsersProvider {
           // At this point make a request to your backend to make a real check!
 
           jQuery.ajax({
+              'method': 'post',
+              'url': `${this.url}login`,
+              'data': { _token: this.token,
+                        username: credentials.email,
+                        password: credentials.password },
+              success: (res)=>{
 
-            'method': 'post',
-            'url': 'http://127.0.0.1:8000/api/login',
-            'data': { _token: this.token,
-                      username: credentials.email,
-                      password: credentials.password },
-            success: (res)=>{
+                let data = JSON.parse(res);
 
-              let data = JSON.parse(res);
+                if(data.access == true){
+                  this.currentUser = new User(data.username, data.email);
+                  console.log(this.currentUser);
+                }
 
-              if(data.access == true){
-                this.currentUser = new User(data.username, data.email);
-                console.log(this.currentUser);
-              }
+                observer.next(data);
+                observer.complete();
 
-              observer.next(data);
-              observer.complete();
-
-            },
-            error: (x,y,z)=>{}
-          });
+              },
+              error: (x,y,z)=>{}
+            });
 
 
         });
