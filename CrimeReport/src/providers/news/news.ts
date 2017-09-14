@@ -16,7 +16,7 @@ import jQuery from "jquery";
 export class NewsProvider {
 
   token = '2e1iX4Cs8VTGx0NCDMtG2pFQ+Yne5iP8Ah8VkVs+9PI=';
-
+  url = "https://crime-report-api.000webhostapp.com/api/";
   constructor(public http: Http) {
     console.log('Hello NewsProvider Provider');
   }
@@ -26,7 +26,7 @@ export class NewsProvider {
       // At this point make a request to your backend to make a real check!
         jQuery.ajax({
             'method': 'get',
-            'url': 'http://127.0.0.1:8000/api/getnews',
+            'url': `${this.url}getnews`,
             'data': { _token: this.token, },
             success: (res)=>{
               let data = JSON.parse(res);
@@ -47,7 +47,7 @@ export class NewsProvider {
       // At this point make a request to your backend to make a real check!
         jQuery.ajax({
             'method': 'get',
-            'url': 'http://127.0.0.1:8000/api/getmappoints',
+            'url': `${this.url}getmappoints`,
             'data': { _token: this.token, },
 
             success: (res)=>{

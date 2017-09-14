@@ -70,7 +70,11 @@ export class UsersProvider {
                 observer.complete();
 
               },
-              error: (x,y,z)=>{}
+              error: (x,y,z)=>{
+                console.log(x);
+                console.log(y);
+                console.log(z);
+              }
             });
 
 
@@ -96,7 +100,9 @@ export class UsersProvider {
 
   public logout() {
     return Observable.create(observer => {
+
       this.currentUser = null;
+
       observer.next(true);
       observer.complete();
     });

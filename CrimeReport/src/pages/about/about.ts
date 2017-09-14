@@ -15,6 +15,7 @@ declare var google;
 export class AboutPage {
 
   @ViewChild('map') mapElement: ElementRef;
+  maps: string = "today";
   map: any;
   position: {};
   coords:{};
@@ -25,7 +26,7 @@ export class AboutPage {
 
   }
 
-  addInfoWindow(marker, content){
+  /*addInfoWindow(marker, content){
 
     let infoWindow = new google.maps.InfoWindow({
       content: content
@@ -35,7 +36,7 @@ export class AboutPage {
       infoWindow.open(this.map, marker);
     });
 
-  }
+  }*/
 
   ngAfterViewInit() {
 
@@ -76,7 +77,7 @@ export class AboutPage {
 
 	}
 
-  public  addMarker(){
+  /*public  addMarker(){
 
 
     let marker = new google.maps.Marker({
@@ -92,7 +93,7 @@ export class AboutPage {
 
 
 
-    }
+  }*/
 
   loadMap(resp){
 
@@ -111,7 +112,8 @@ export class AboutPage {
     let mapOptions = {
       center: latLng,
       zoom: 8,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      disableDefaultUI: true
     }
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
@@ -121,21 +123,6 @@ export class AboutPage {
     });
 
     heatmap.setMap(this.map);
-
-
-
-
-
-    /*
-    this.addMarker();
-    this.addMarker();
-    this.addMarker();
-    this.addMarker();
-    this.addMarker();
-
-    */
-
-
   }
 
 
