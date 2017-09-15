@@ -40,40 +40,15 @@ export class AboutPage {
 
   ngAfterViewInit() {
 
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.position = { 'lat': resp.coords.latitude,'lng': resp.coords.longitude};
 
-    this.news.getmapPoints().subscribe(row => {
-      if (row.error) {
-          //show error alert
-      } else {
-          this.points = row;
-          console.log(this.points);
-
-          this.geolocation.getCurrentPosition().then((resp) => {
-            this.position = { 'lat': resp.coords.latitude,'lng': resp.coords.longitude};
-
-            //console.log(this.position);
-
-            this.loadMap(resp)
-           // resp.coords.latitude
-           // resp.coords.longitude
-          }).catch((error) => {
-            console.log('Error getting location', error);
-          });
-
-      }
-    },
-      error => {
-
-      });;
-
-    console.log("this.points = ");
-    console.log(this.points);
-
-
-
-
-
-
+      this.setMap(0);
+     // resp.coords.latitude
+     // resp.coords.longitude
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
 
 	}
 
@@ -100,35 +75,129 @@ export class AboutPage {
 
     /* Data points defined as a mixture of WeightedLocation and LatLng objects */
 
-    var heatMapData = this.points.map((value,i)=>{
-      return new google.maps.LatLng(value.lat,value.lng);
-    });
 
 
-    console.log(heatMapData);
-
-    let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+    let latLng = new google.maps.LatLng(resp.lat, resp.lng);
 
     let mapOptions = {
       center: latLng,
-      zoom: 8,
+      zoom: 11,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       disableDefaultUI: true
     }
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
-    var heatmap = new google.maps.visualization.HeatmapLayer({
-      data: heatMapData
-    });
 
-    heatmap.setMap(this.map);
   }
 
 
 
 
+  setMap(_string){
+    var heatmap = new google.maps.visualization.HeatmapLayer();
+    console.log(heatmap);
+    switch(_string){
+      case 0:
 
+      this.news.getmapPoints(0).subscribe(row => {
+        if (row.error) {
+            //show error alert
+        } else {
+            this.points = row;
+            console.log(this.points);
+            var heatMapData = this.points.map((value,i)=>{
+              return new google.maps.LatLng(value.lat,value.lng);
+            });
+
+
+            this.loadMap(this.position);
+
+            heatmap = new google.maps.visualization.HeatmapLayer({
+              data: heatMapData
+            });
+
+            heatmap.setMap(this.map);
+
+
+
+        }
+      },
+        error => {
+
+        });;
+
+        break;
+      case 1:
+
+      this.news.getmapPoints(1).subscribe(row => {
+        if (row.error) {
+            //show error alert
+        } else {
+            this.points = row;
+            console.log(this.points);
+            var heatMapData = this.points.map((value,i)=>{
+              return new google.maps.LatLng(value.lat,value.lng);
+            });
+
+
+            this.loadMap(this.position);
+
+            heatmap = new google.maps.visualization.HeatmapLayer({
+              data: heatMapData
+            });
+
+            heatmap.setMap(this.map);
+
+
+
+        }
+      },
+        error => {
+
+        });;
+
+
+        break;
+      case 2:
+
+      this.news.getmapPoints(2).subscribe(row => {
+        if (row.error) {
+            //show error alert
+        } else {
+            this.points = row;
+            console.log(this.points);
+            var heatMapData = this.points.map((value,i)=>{
+              return new google.maps.LatLng(value.lat,value.lng);
+            });
+
+
+            this.loadMap(this.position);
+
+            heatmap = new google.maps.visualization.HeatmapLayer({
+              data: heatMapData
+            });
+
+            heatmap.setMap(this.map);
+
+
+
+        }
+      },
+        error => {
+
+        });;
+        break;
+
+    }
+
+
+
+
+
+
+
+  }
 
 
 

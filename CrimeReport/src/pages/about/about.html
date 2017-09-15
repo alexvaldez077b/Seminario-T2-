@@ -13,13 +13,13 @@
 
   <div padding>
   <ion-segment [(ngModel)]="maps">
-    <ion-segment-button value="today">
+    <ion-segment-button (click)='setMap(0)' value="today">
       Today
     </ion-segment-button>
-    <ion-segment-button value="week">
+    <ion-segment-button (click)='setMap(1)' value="week">
       This Week
     </ion-segment-button>
-    <ion-segment-button value="month">
+    <ion-segment-button (click)='setMap(2)' value="month">
       This Month
     </ion-segment-button>
   </ion-segment>

@@ -17,6 +17,7 @@ export class NewsProvider {
 
   token = '2e1iX4Cs8VTGx0NCDMtG2pFQ+Yne5iP8Ah8VkVs+9PI=';
   url = "https://crime-report-api.000webhostapp.com/api/";
+  //url = "http://localhost:8000/api/";
   constructor(public http: Http) {
     console.log('Hello NewsProvider Provider');
   }
@@ -42,12 +43,27 @@ export class NewsProvider {
     });
   }
 
-  getmapPoints(){
+  getmapPoints(val){
+
+    var param ;
+
+    switch(val){
+      case 0: //today
+        param = "getmappointsToday";
+        break;
+      case 1: //week
+        param = "getmappointsWeek";
+        break;
+      case 2: //month
+        param = "getmappointsMonth";
+        break;
+    }
+
     return Observable.create(observer => {
       // At this point make a request to your backend to make a real check!
         jQuery.ajax({
             'method': 'get',
-            'url': `${this.url}getmappoints`,
+            'url': `${this.url}${param}`,
             'data': { _token: this.token, },
 
             success: (res)=>{
