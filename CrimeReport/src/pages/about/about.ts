@@ -2,10 +2,8 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 
-import { Geolocation } from '@ionic-native/geolocation';
-
 import {NewsProvider} from "../../providers/news/news";
-
+import { Geolocation } from '@ionic-native/geolocation';
 declare var google;
 
 @Component({

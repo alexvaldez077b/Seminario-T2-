@@ -16,8 +16,8 @@ import jQuery from "jquery";
 export class NewsProvider {
 
   token = '2e1iX4Cs8VTGx0NCDMtG2pFQ+Yne5iP8Ah8VkVs+9PI=';
-  url = "https://crime-report-api.000webhostapp.com/api/";
-  //url = "http://localhost:8000/api/";
+  //url = "https://crime-report-api.000webhostapp.com/api/";
+  url = "http://localhost:8000/api/";
   constructor(public http: Http) {
     console.log('Hello NewsProvider Provider');
   }
@@ -41,6 +41,31 @@ export class NewsProvider {
           });
 
     });
+  }
+
+  getEventsType(){
+
+    return Observable.create(observer => {
+      // At this point make a request to your backend to make a real check!
+        jQuery.ajax({
+            'method': 'get',
+            'url': `${this.url}eventTypes`,
+            'data': { _token: this.token, },
+
+            success: (res)=>{
+
+              let data = JSON.parse(res);
+              observer.next(data);
+              observer.complete();
+
+            },
+            error: (x,y,z)=>{
+
+            }
+          });
+
+    });
+
   }
 
   getmapPoints(val){

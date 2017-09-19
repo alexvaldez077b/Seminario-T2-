@@ -20,6 +20,7 @@
 
 <ion-content padding>
 
+<div  #map id="map"></div>
 
 <ion-list>
   <ion-item>
@@ -27,44 +28,51 @@
     <ion-icon name="ios-locate-outline" item-end></ion-icon>
   </ion-item>
 
-  <ion-item>
-    <ion-label>Tipo Evento</ion-label>
-    <ion-select [(ngModel)]="eventType" cancelText="cancelar" okText="Listo!">
-      
-      <ion-option value="option1">value1</ion-option>
-      <ion-option value="option2">value2</ion-option>
-      <ion-option value="option3">value3</ion-option>
-      <ion-option value="option4">value4</ion-option>
-      <ion-option value="option5">value5</ion-option>
-      <ion-option value="option6">value6</ion-option>
-      <ion-option value="option7">value7</ion-option>
-      <ion-option value="option8">value8</ion-option>
-      <ion-option value="option9">value9</ion-option>
-      <ion-option value="option10">value10</ion-option>
-      <ion-option value="option11">value11</ion-option>
-      <ion-option value="option12">value12</ion-option>
-      <ion-option value="option13">value13</ion-option>
-      <ion-option value="option14">value14</ion-option>
-      <ion-option value="option15">value15</ion-option>
-      <ion-option value="option16">value16</ion-option>
-      
-
-    
-    </ion-select>
-  </ion-item>
 </ion-list>
 
-<ion-item (click)='openCamera()'>
-      Picture/Video
-    <ion-icon name="ios-reverse-camera-outline" item-end></ion-icon>
-    <ion-icon name="ios-videocam-outline" item-end></ion-icon>
+  <ion-item>
+    <ion-label stacked>Title</ion-label>
+    <ion-textarea [(ngModel)]="title" placeholder="Enter a title"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Tipo Evento</ion-label>
+    <ion-select  [(ngModel)]="crimeType"  cancelText="cancelar" okText="Listo!">
+
+      <ion-option *ngFor="let keys of eventType" value="{{keys.id}}">{{keys.name}}</ion-option>
+
+    </ion-select>
+
+
+  </ion-item>
+  <ion-item>
+  <ion-label> incluyo violencia</ion-label>
+  <ion-toggle [(ngModel)]="violento" checked="false"></ion-toggle>
+</ion-item>
+
+  <ion-item>
+    <ion-label>Date</ion-label>
+    <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="date"></ion-datetime>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-label>Time</ion-label>
+    <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="date"></ion-datetime>
   </ion-item>
 
   <ion-item>
     <ion-label stacked>Description</ion-label>
-    <ion-textarea placeholder="Enter a description"></ion-textarea>
+    <ion-textarea [(ngModel)]="description" placeholder="Enter a description"></ion-textarea>
   </ion-item>
 
-<button (click)='cancel()' ion-button full>Save</button>
+  <ion-item (click)='openCamera()'>
+      Picture/Video
+    <ion-icon name="attach" item-end></ion-icon>
+    <ion-icon name="ios-reverse-camera-outline" item-end></ion-icon>
+    <ion-icon name="ios-videocam-outline" item-end></ion-icon>
+  </ion-item>
+
+<button (click)='save()' ion-button full>Save</button>
 
 </ion-content>

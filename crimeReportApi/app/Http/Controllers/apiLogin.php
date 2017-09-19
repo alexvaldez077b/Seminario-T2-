@@ -34,6 +34,19 @@ class apiLogin extends Controller
           }
     }
 
+    function geteventTypes(Request $req){
+      if($req->_token!="2e1iX4Cs8VTGx0NCDMtG2pFQ+Yne5iP8Ah8VkVs+9PI="){
+
+        return json_encode(array('error' => "InvalidArgumentException token" ));
+      }else {
+
+        $news = DB::table('crimenes')->get();
+        echo json_encode($news);
+
+      }
+
+    }
+
     function getNews(Request $req){
       if($req->_token!="2e1iX4Cs8VTGx0NCDMtG2pFQ+Yne5iP8Ah8VkVs+9PI="){
         return json_encode(array('error' => "InvalidArgumentException token" ));

@@ -20,6 +20,8 @@ Route::get('/getmappointsToday','apiLogin@getmappointsToday');
 Route::get('/getmappointsWeek','apiLogin@getmappointsWeek');
 Route::get('/getmappointsMonth','apiLogin@getmappointsMonth');
 
+Route::get("/eventTypes" , 'apiLogin@geteventTypes' );
+
 Route::get('/test','apiLogin@test');
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
 

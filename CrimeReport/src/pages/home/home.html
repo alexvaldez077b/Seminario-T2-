@@ -26,20 +26,20 @@
 
   <ion-row>
     <ion-col>
-      <button ion-button color="primary" clear small icon-start>
-        <ion-icon name='thumbs-up'></ion-icon>
-        N Likes
+      <button ion-button color="danger" clear small icon-start>
+        <ion-icon color="danger" name='ios-radio-outline'></ion-icon>
+        Alert
       </button>
     </ion-col>
-    <ion-col>
+    <!--ion-col>
       <button ion-button color="primary" clear small icon-start>
         <ion-icon name='text'></ion-icon>
         N Comments
       </button>
-    </ion-col>
+    </ion-col-->
     <ion-col align-self-center text-center>
       <ion-note>
-        {{new.created_at}}
+        Published: {{new.created_at}}
       </ion-note>
     </ion-col>
   </ion-row>
@@ -48,12 +48,8 @@
 
 
   <!-- Real floating action button, fixed. It will not scroll with the content -->
-
   <ion-fab right bottom>
     <button  ion-fab color="danger" (click)='Add()' ><ion-icon name="ios-add-outline"></ion-icon></button>
-
-
-
   </ion-fab>
 
 

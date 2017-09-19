@@ -4,6 +4,8 @@ import { AddPage } from '../add/add';
 
 import 'rxjs/add/operator/map';
 
+import * as moment from 'moment';
+
 import {UsersProvider} from "../../providers/users/users";
 import {NewsProvider} from "../../providers/news/news";
 
@@ -16,6 +18,9 @@ export class HomePage {
   posts:any;
   constructor(public navCtrl: NavController,public session: UsersProvider, public news: NewsProvider) {
 
+    let now = moment().format('LLLL');
+   console.log(now);
+
     let currentUser = this.session.showCurrentUser();
 
     this.news.getNews().subscribe(row => {
@@ -25,7 +30,11 @@ export class HomePage {
       } else {
         this.posts = row;
 
-        console.log(this.posts);
+        this.posts.map((val,i)=>{
+          val.created_at = moment(val.created_at, "YYYYMMDD").fromNow();
+          val.at = moment(val.at,"YYYYMMDD").fromNow();  
+        });
+
 
       }
 
