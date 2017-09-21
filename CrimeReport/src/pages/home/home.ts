@@ -47,6 +47,35 @@ export class HomePage {
 
   }
 
+  doRefresh(refresher){
+
+
+    this.news.getNews().subscribe(row => {
+      
+            if (row.error) {
+              //show error dialog
+            } else {
+              this.posts = row;
+      
+              this.posts.map((val,i)=>{
+                val.created_at = moment(val.created_at, "YYYYMMDD").fromNow();
+                val.at = moment(val.at,"YYYYMMDD").fromNow();  
+              });
+
+              refresher.complete();
+      
+      
+            }
+      
+          },
+            error => {
+      
+            });
+
+
+
+  }
+
   Add(){
   	console.log("Add event");
 

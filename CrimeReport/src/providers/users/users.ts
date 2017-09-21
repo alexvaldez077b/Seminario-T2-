@@ -16,8 +16,9 @@ import jQuery from "jquery";
 export class User {
   name: string;
   email: string;
-
-  constructor(name: string, email: string) {
+  id;
+  constructor(id,name: string, email: string) {
+    this.id = id;
     this.name = name;
     this.email = email;
   }
@@ -29,20 +30,13 @@ export class UsersProvider {
   currentUser: User;
   token = '2e1iX4Cs8VTGx0NCDMtG2pFQ+Yne5iP8Ah8VkVs+9PI=';
 
-  url = "https://crime-report-api.000webhostapp.com/api/";
+  //url = "https://crime-report-api.000webhostapp.com/api/";
+  url = "http://localhost:8000/api/";
 
   constructor(public http: Http) {
-    console.log('Hello authProvider Provider');
+    //console.log('Hello authProvider Provider');
   }
 
-/*  login(username,password){
-    let response;
-
-
-
-
-
-  }*/
 
   public login(credentials) {
       if (credentials.email === null || credentials.password === null) {
@@ -61,9 +55,11 @@ export class UsersProvider {
 
                 let data = JSON.parse(res);
 
+                
+
                 if(data.access == true){
-                  this.currentUser = new User(data.username, data.email);
-                  console.log(this.currentUser);
+                  this.currentUser = new User(data.id,data.username, data.email);
+                  //console.log(this.currentUser);
                 }
 
                 observer.next(data);
@@ -71,9 +67,9 @@ export class UsersProvider {
 
               },
               error: (x,y,z)=>{
-                console.log(x);
-                console.log(y);
-                console.log(z);
+                //console.log(x);
+                //console.log(y);
+                //console.log(z);
               }
             });
 

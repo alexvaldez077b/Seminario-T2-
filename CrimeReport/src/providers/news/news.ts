@@ -107,4 +107,36 @@ export class NewsProvider {
 
   }
 
+  sendNew(data){
+
+    console.log(data);
+    return Observable.create(observer => {
+      // At this point make a request to your backend to make a real check!
+        jQuery.ajax({
+            'method': 'post',
+            'url': `${this.url}sendnew`,
+            'data': { _token: this.token, data:data },
+
+            success: (res)=>{
+
+              
+
+              let data = JSON.parse(res);
+              console.log(data);
+              observer.next(data);
+              observer.complete();
+
+            },
+            error: (x,y,z)=>{
+                console.log(x);
+                console.log(y);
+                console.log(z);
+            }
+          });
+
+    });
+
+  }
+
+
 }

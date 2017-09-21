@@ -14,3 +14,15 @@ page-add {
   }
 
 }
+
+.toast-error {
+  > div{
+       background-color: red!important;
+   }
+}
+
+.toast-success {
+  > div{
+       background-color:#32db64!important;
+   }
+}

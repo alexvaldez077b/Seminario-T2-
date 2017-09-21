@@ -19,10 +19,10 @@ class apiLogin extends Controller
 
           if ($user = Auth::attempt(['email' => $req->username, 'password' => $req->password])) {
                     // Authentication passed...
-
                     $user = User::where('email', $req->username)->first();
 
                     echo json_encode(array('access' => true,
+                                            'id' => $user->id,
                                             'username' => $user->name,
                                             'email'   => $user->email)) ;
 
@@ -109,10 +109,54 @@ class apiLogin extends Controller
 
     }
 
+    function sendnew(Request $req){
+
+      if($req->_token!="2e1iX4Cs8VTGx0NCDMtG2pFQ+Yne5iP8Ah8VkVs+9PI="){
+        return json_encode(array('error' => "InvalidArgumentException token" ));
+      }else {
+
+       
+         
+          DB::table('news')->insert(
+            [ 
+              'title'       => $req->data["title"],
+              'id_user'     => $req->data["user"],
+              'id_crime'    => $req->data["crime"],
+              'violence'    => $req->data["includeV"]?1:0,
+              'lat'         => $req->data['location']["lat"],
+              'lng'         => $req->data['location']["lng"],
+              'at'          => $req->data["date"],
+              'description' => $req->data["description"],
+              'photo'       => "http://maxpixel.freegreatpicture.com/static/photo/1x/Breaking-News-Urgently-The-Gap-Message-News-Alarm-2310064.jpg"
+            ]);
+
+            return json_encode( array(  'access'      => true  ) );
+        
+            
+         }
+          
+      
+        
+
+
+        
+        
+
+        
+
+        
+        
+      }
+
+
+
+
     function test(){
-      $user = User::where('email', 'alexvaldez077b@gmail.com')->get();
-      foreach ($user as $row) {
-        print_r($row);
+      
+      if($req->_token!="2e1iX4Cs8VTGx0NCDMtG2pFQ+Yne5iP8Ah8VkVs+9PI="){
+        return json_encode(array('error' => "InvalidArgumentException token" ));
+      }else {
+        
       }
 
     }

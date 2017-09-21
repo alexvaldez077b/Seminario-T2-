@@ -8,7 +8,7 @@ import { MyApp } from './app.component';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '@ionic-native/google-maps';
-
+import { PhotoLibrary } from '@ionic-native/photo-library';
 
 
 import { AboutPage } from '../pages/about/about';
@@ -61,6 +61,7 @@ import { NewsProvider } from '../providers/news/news';
     GoogleMaps,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UsersProvider,
+    PhotoLibrary,
     NewsProvider
   ]
 })

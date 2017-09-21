@@ -22,6 +22,8 @@ Route::get('/getmappointsMonth','apiLogin@getmappointsMonth');
 
 Route::get("/eventTypes" , 'apiLogin@geteventTypes' );
 
+Route::post("/sendnew" , 'apiLogin@sendnew' );
+
 Route::get('/test','apiLogin@test');
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
 

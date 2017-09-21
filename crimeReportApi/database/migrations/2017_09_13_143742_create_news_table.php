@@ -18,9 +18,13 @@ class CreateNewsTable extends Migration
             $table->increments('id');
             $table->integer('id_user');
 
+            $table->integer('id_crime');
+            
+
             //table fields
             $table->string('title');          //titulo
             $table->string('description');    //descripcion
+            $table->boolean('violence');
             $table->decimal('lat', 18, 15);   //latitud longitud
             $table->decimal('lng', 18, 15);
             $table->dateTime('at');
