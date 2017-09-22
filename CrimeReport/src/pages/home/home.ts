@@ -4,7 +4,8 @@ import { AddPage } from '../add/add';
 
 import 'rxjs/add/operator/map';
 
-import * as moment from 'moment';
+//import * as moment from 'moment';
+import * as moment from 'moment-timezone';
 
 import {UsersProvider} from "../../providers/users/users";
 import {NewsProvider} from "../../providers/news/news";
@@ -18,6 +19,8 @@ export class HomePage {
   posts:any;
   constructor(public navCtrl: NavController,public session: UsersProvider, public news: NewsProvider) {
 
+    
+
     let now = moment().format('LLLL');
    console.log(now);
 
@@ -29,10 +32,15 @@ export class HomePage {
         //show error dialog
       } else {
         this.posts = row;
-
+        moment.tz.setDefault("America/Chihuahua");
         this.posts.map((val,i)=>{
-          val.created_at = moment(val.created_at, "YYYYMMDD").fromNow();
-          val.at = moment(val.at,"YYYYMMDD").fromNow();  
+          
+          val.created_at = moment(val.created_at , "YYYYMMDD H:i").fromNow();
+          val.at = moment(val.at,"YYYYMMDD H:i ").fromNow();  
+
+          console.log(val.at);
+          console.log(val.created_at);
+
         });
 
 
@@ -58,8 +66,9 @@ export class HomePage {
               this.posts = row;
       
               this.posts.map((val,i)=>{
-                val.created_at = moment(val.created_at, "YYYYMMDD").fromNow();
-                val.at = moment(val.at,"YYYYMMDD").fromNow();  
+
+                val.created_at = moment(val.created_at , "YYYYMMDD H:i").fromNow();
+          val.at = moment(val.at,"YYYYMMDD H:i ").fromNow();    
               });
 
               refresher.complete();
