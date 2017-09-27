@@ -30,8 +30,8 @@ export class UsersProvider {
   currentUser: User;
   token = '2e1iX4Cs8VTGx0NCDMtG2pFQ+Yne5iP8Ah8VkVs+9PI=';
 
-  //url = "https://crime-report-api.000webhostapp.com/api/";
-  url = "http://localhost:8000/api/";
+  url = "https://crime-report-api.000webhostapp.com/api/";
+  //url = "http://localhost:8000/api/";
 
   constructor(public http: Http) {
     //console.log('Hello authProvider Provider');

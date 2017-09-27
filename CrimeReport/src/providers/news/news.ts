@@ -138,5 +138,69 @@ export class NewsProvider {
 
   }
 
+  DetailNew(id){
+
+    return Observable.create(observer => {
+      // At this point make a request to your backend to make a real check!
+        jQuery.ajax({
+            'method': 'get',
+            'url': `${this.url}detailnew`,
+            'data': { _token: this.token, id:id },
+
+            success: (res)=>{
+
+              let data = JSON.parse(res);
+              console.log(data);
+              observer.next(data);
+              observer.complete();
+              
+            },
+            error: (x,y,z)=>{
+                console.log(x);
+                console.log(y);
+                console.log(z);
+            }
+          });
+
+    });
+
+
+
+  }
+  //
+
+  getMedia(id){
+
+
+    return Observable.create(observer => {
+      // At this point make a request to your backend to make a real check!
+        jQuery.ajax({
+            'method': 'get',
+            'url': `${this.url}getmedia`,
+            'data': { _token: this.token, id:id },
+
+            success: (res)=>{
+
+              let data = JSON.parse(res);
+              console.log(data);
+              observer.next(data);
+              observer.complete();
+              
+            },
+            error: (x,y,z)=>{
+                console.log(x);
+                console.log(y);
+                console.log(z);
+            }
+          });
+
+    });
+
+
+
+  }
+
+  //
+
 
 }

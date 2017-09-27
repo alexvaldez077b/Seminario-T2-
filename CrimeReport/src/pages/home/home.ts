@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController   } from 'ionic-angular';
 import { AddPage } from '../add/add';
+import { DetailPage } from '../detail/detail';
+import { AlertController } from 'ionic-angular';
 
 import 'rxjs/add/operator/map';
 
@@ -10,6 +12,7 @@ import * as moment from 'moment-timezone';
 import {UsersProvider} from "../../providers/users/users";
 import {NewsProvider} from "../../providers/news/news";
 
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -17,7 +20,8 @@ import {NewsProvider} from "../../providers/news/news";
 
 export class HomePage {
   posts:any;
-  constructor(public navCtrl: NavController,public session: UsersProvider, public news: NewsProvider) {
+  
+  constructor(public navCtrl: NavController,public session: UsersProvider, public news: NewsProvider,public alertCtrl: AlertController) {
 
     
 
@@ -36,7 +40,9 @@ export class HomePage {
         this.posts.map((val,i)=>{
           
           val.created_at = moment(val.created_at , "YYYYMMDD H:i").fromNow();
-          val.at = moment(val.at,"YYYYMMDD H:i ").fromNow();  
+          val.at = moment(val.at,"YYYYMMDD H:i ").fromNow();
+          
+          
 
           console.log(val.at);
           console.log(val.created_at);
@@ -55,6 +61,13 @@ export class HomePage {
 
   }
 
+  Details(id){
+
+    this.navCtrl.push(DetailPage, {id: id});
+    
+
+  }
+
   doRefresh(refresher){
 
 
@@ -68,7 +81,7 @@ export class HomePage {
               this.posts.map((val,i)=>{
 
                 val.created_at = moment(val.created_at , "YYYYMMDD H:i").fromNow();
-          val.at = moment(val.at,"YYYYMMDD H:i ").fromNow();    
+                val.at = moment(val.at,"YYYYMMDD H:i ").fromNow();    
               });
 
               refresher.complete();
@@ -91,6 +104,34 @@ export class HomePage {
   	//let modal =
     this.navCtrl.push(AddPage);
 
+
+  }
+
+  Alert(){
+
+    let confirm = this.alertCtrl.create({
+      title: '¿Está seguro de querer alertar este evento?',
+      message: 'Por favor alerte solo eventos que usted considere verdaderamente importantes.',
+      buttons: [
+        {
+          text: 'Disagree',
+          handler: () => {
+
+            alert('Disagree clicked');
+          }
+        },
+        {
+          text: 'Agree',
+          handler: () => {
+
+
+
+            alert('Agree clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
 
   }
 

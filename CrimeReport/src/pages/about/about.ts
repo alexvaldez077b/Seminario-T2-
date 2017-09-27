@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { LoadingController } from 'ionic-angular';
 
 import {NewsProvider} from "../../providers/news/news";
 import { Geolocation } from '@ionic-native/geolocation';
@@ -17,10 +18,10 @@ export class AboutPage {
   map: any;
   position: {};
   coords:{};
-
+  loading:any;
   points: any;
 
-  constructor(public navCtrl: NavController,private geolocation: Geolocation, private news: NewsProvider) {
+  constructor(public navCtrl: NavController,private geolocation: Geolocation, private news: NewsProvider,public loadingCtrl: LoadingController) {
 
   }
 
@@ -98,7 +99,11 @@ export class AboutPage {
     switch(_string){
       case 0:
 
+      this.showLoading();
       this.news.getmapPoints(0).subscribe(row => {
+
+        this.loading.dismiss();
+
         if (row.error) {
             //show error alert
         } else {
@@ -122,13 +127,18 @@ export class AboutPage {
         }
       },
         error => {
+
+          this.loading.dismiss();
+          alert(error);
 
         });;
 
         break;
       case 1:
-
+      this.showLoading();
       this.news.getmapPoints(1).subscribe(row => {
+
+        this.loading.dismiss();
         if (row.error) {
             //show error alert
         } else {
@@ -152,14 +162,18 @@ export class AboutPage {
         }
       },
         error => {
+
+          this.loading.dismiss();
+          alert(error);
 
         });;
 
 
         break;
       case 2:
-
+        this.showLoading();
       this.news.getmapPoints(2).subscribe(row => {
+        this.loading.dismiss();
         if (row.error) {
             //show error alert
         } else {
@@ -183,6 +197,8 @@ export class AboutPage {
         }
       },
         error => {
+          this.loading.dismiss();
+          alert(error);
 
         });;
         break;
@@ -195,6 +211,14 @@ export class AboutPage {
 
 
 
+  }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
+    });
+    this.loading.present();
   }
 
 

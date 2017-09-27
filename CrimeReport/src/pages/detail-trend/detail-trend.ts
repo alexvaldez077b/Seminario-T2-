@@ -21,7 +21,9 @@ export class DetailTrendPage {
   ionViewDidLoad() {
     
     let data = this.navParams.get('data');
+
     console.log(data + "This data get");
+  
   }
 
 }

@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use App\News;
 
 use DateTime;
+use Image;
+
 class apiLogin extends Controller
 {
     public function login(Request $req){
@@ -51,7 +53,7 @@ class apiLogin extends Controller
       if($req->_token!="2e1iX4Cs8VTGx0NCDMtG2pFQ+Yne5iP8Ah8VkVs+9PI="){
         return json_encode(array('error' => "InvalidArgumentException token" ));
       }else {
-        $news = DB::table('news')->limit(50)->orderBy('at','desc')->get();
+        $news = DB::table('news') ->limit(50)->orderBy('at','desc')->get();
         echo json_encode($news);
       }
 
@@ -117,38 +119,69 @@ class apiLogin extends Controller
         return json_encode(array('error' => "InvalidArgumentException token" ));
       }else {
 
-       
-         //modify database to crated_at set current_timestamp
-          DB::table('news')->insert(
-            [ 
-              'title'       => $req->data["title"],
-              'id_user'     => $req->data["user"],
-              'id_crime'    => $req->data["crime"],
-              'violence'    => $req->data["includeV"]?1:0,
-              'lat'         => $req->data['location']["lat"],
-              'lng'         => $req->data['location']["lng"],
-              'at'          => $req->data["date"],
-              'description' => $req->data["description"],
-              'photo'       => "http://maxpixel.freegreatpicture.com/static/photo/1x/Breaking-News-Urgently-The-Gap-Message-News-Alarm-2310064.jpg"
-            ]);
+        //modify database to crated_at set current_timestamp
+        $id = DB::table('news')->insertGetId(
+          [ 
+            'title'       => $req->data["title"],
+            'id_user'     => $req->data["user"],
+            'id_crime'    => $req->data["crime"],
+            'violence'    => $req->data["includeV"]?1:0,
+            'lat'         => $req->data['location']["lat"],
+            'lng'         => $req->data['location']["lng"],
+            'at'          => $req->data["date"],
+            'description' => $req->data["description"]
+          ]);
+
+        if($req->data['image'] != ""){
+
+          $png_url = "event-".time().".png";
+          $path = public_path().'\\img\\' . $png_url;
+          Image::make(file_get_contents($req->data['image']))->save($path);     
+          BD::table('media')->insert([ 'id_event' => $id, 'path'    => $png_url ]);
+
+        }
+
+        //Send pushi <notification class="">
+        
+
 
             return json_encode( array(  'access'      => true  ) );
         
             
          }
-          
-      
-        
-
-
-        
-        
-
-        
-
-        
         
       }
+
+     function detailnew(Request $req){
+
+      if($req->_token!="2e1iX4Cs8VTGx0NCDMtG2pFQ+Yne5iP8Ah8VkVs+9PI="){
+        return json_encode(array('error' => "InvalidArgumentException token" ));
+      
+      }else {
+       
+      $post = DB::table('news')->join('crimenes', 'crimenes.id', '=', 'news.id_crime') ->where('news.id','=',$req->id) ->get();
+
+      return json_encode($post);
+
+        
+      }
+
+
+     }
+
+     function getmedia(Request $req){
+
+      if($req->_token!="2e1iX4Cs8VTGx0NCDMtG2pFQ+Yne5iP8Ah8VkVs+9PI="){
+        return json_encode(array('error' => "InvalidArgumentException token" ));
+      }else {
+       
+        $media =  DB::table('media')->where('id_event','=',$req->id )->get();
+        
+        return json_encode($media);
+
+      }
+
+     }
 
 
 

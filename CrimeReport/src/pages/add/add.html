@@ -5,11 +5,7 @@
   Ionic pages and navigation.
 -->
 
-
-
-
 <ion-header>
-
   <ion-navbar>
     <ion-title>add</ion-title>
   </ion-navbar>
@@ -72,6 +68,15 @@
     <ion-icon name="ios-videocam-outline" item-end></ion-icon>
   </ion-item>
 
+  <ion-item>
+
+    <img [src]="base64ImageUrl" *ngIf="base64ImageUrl" >
+  </ion-item>
+
+  
+
 <button (click)='save()' ion-button full>Save</button>
+
+
 
 </ion-content>
