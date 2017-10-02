@@ -29,6 +29,8 @@ import { NewsProvider } from '../providers/news/news';
 
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 const cloudSettings: CloudSettings = {
@@ -63,6 +65,8 @@ const cloudSettings: CloudSettings = {
     DetailPage
   ],
   imports: [
+    BrowserAnimationsModule,
+    NgxChartsModule,
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),

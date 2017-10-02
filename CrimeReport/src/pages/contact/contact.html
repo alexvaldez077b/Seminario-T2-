@@ -9,6 +9,27 @@
 <ion-content>
 
 
+<ngx-charts-pie-chart
+[view]="view"
+[scheme]="colorScheme"
+[results]="single"
+[legend]="showLegend"
+[explodeSlices]="explodeSlices"
+[labels]="showLabels"
+[doughnut]="doughnut"
+[gradient]="gradient"
+(select)="onSelect($event)">
+</ngx-charts-pie-chart>
+
+<ngx-charts-number-card
+[view]="view"
+[scheme]="colorScheme"
+[results]="single"
+(select)="onSelect($event)">
+</ngx-charts-number-card>
+
+
+
   <ion-list no-border>
 
       <ion-list-header>
