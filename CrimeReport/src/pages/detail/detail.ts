@@ -107,6 +107,8 @@ export class DetailPage {
               this.news.getMedia(this.id).subscribe(row=>{
                   
                 this.media = row;
+                console.log(row );
+                console.log("Media...");
 
               }, error =>{
 

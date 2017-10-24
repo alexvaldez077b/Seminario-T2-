@@ -23,6 +23,22 @@
       <h2> {{currentUser.name}} </h2>
       <button ion-button clear item-end>View</button>
     </ion-item>
+    <ion-item>
+        <ion-label> Show Notifications</ion-label>
+        <ion-toggle  checked="true"></ion-toggle>
+      </ion-item>
+    <ion-item>
+        <p>Notification priority</p>
+    </ion-item>
+    <ion-item>  
+      
+      <ion-range min="0" max="3" step="1" snaps="true" [(ngModel)]="warmth" color="danger">
+        <span range-left >low</span>
+        
+        <span range-right>High</span>
+      </ion-range>
+    </ion-item>
+
   </ion-list>
 
 <button color="danger" ion-button full (click)='logout()' >Log out</button>

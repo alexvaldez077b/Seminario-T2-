@@ -10,46 +10,48 @@ import { DetailTrendPage } from '../detail-trend/detail-trend';
 export class ContactPage {
 
   @ViewChild(Content) content: Content;
+  datestart = "2017-10-01";
+  dateend = "2017-10-20"
    single = [
     {
       "name": "Homicidio",
-      "value": 8940000
+      "value": 3
     },
     {
       "name": "Robo casa habitacion",
-      "value": 5000000
+      "value": 15
     },
     {
-      "name": "France",
-      "value": 7200000
+      "name": "Secuestros",
+      "value": 1
     },
     {
-      "name": "Homicidio",
-      "value": 8940000
+      "name": "Robo a transeuntes",
+      "value": 300
     },
     {
-      "name": "Robo casa habitacion",
-      "value": 5000000
+      "name": "Robo a negocios",
+      "value": 42
     },
     {
-      "name": "France",
-      "value": 7200000
+      "name": "Fraudes",
+      "value": 37
     },
     {
-      "name": "Homicidio",
-      "value": 8940000
+      "name": "Daño a propiedad",
+      "value": 50
     },
     {
-      "name": "Robo casa habitacion",
-      "value": 5000000
+      "name": "Delito contra la salud",
+      "value": 325
     },
     {
-      "name": "France",
-      "value": 7200000
+      "name": "Robo de vehiculo",
+      "value": 461
     },
     {
-      "name": "France",
-      "value": 7200000
+      "name": "tiroteos",
+      "value": 9
     },
     
 
