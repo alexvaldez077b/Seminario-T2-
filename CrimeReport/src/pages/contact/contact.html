@@ -9,6 +9,63 @@
 <ion-content>
 
 
+    <ion-item>
+        <ion-label>Report Start</ion-label>
+        <ion-datetime displayFormat="MMM DD YYYY" pickerFormat="MMM DD YYYY" [(ngModel)]="datestart"></ion-datetime>
+      </ion-item>
+      <ion-item>
+          <ion-label>Report End</ion-label>
+          <ion-datetime displayFormat="MMM DD YYYY" pickerFormat="MMM DD YYYY" [(ngModel)]="dateend"></ion-datetime>
+        </ion-item>
+        <ion-list>
+            <ion-item>
+              <ion-label>View</ion-label>
+              <ion-select >
+                <ion-option value="1">Homicidios</ion-option>
+                <ion-option value="2">Robo casa habitacion</ion-option>
+                <ion-option value="3">Secuestros</ion-option>
+                <ion-option value="4">Robo a transeuntes</ion-option>
+                <ion-option value="5">Robo a negocios</ion-option>
+                <ion-option value="6">Fraudes</ion-option>
+                <ion-option value="7">Daño a propiedad</ion-option>
+                <ion-option value="8">Delitos contra la salud</ion-option>
+                <ion-option value="9">Robo de vehiculo</ion-option>
+                <ion-option value="10">Tiroteos</ion-option>
+                <ion-option value="11">Todos</ion-option>
+
+              </ion-select>
+            </ion-item>
+          </ion-list>
+    <ion-list no-border>
+        
+              <ion-list-header>
+                Info
+              </ion-list-header>
+        
+              <ion-item>
+                <p>
+                    Delitos que incluyeron violencia
+                </p>
+                <ion-note item-end>
+                982 / 1242
+                </ion-note>
+              </ion-item>
+        
+              <ion-item>
+                <h4>
+                    Horas de mayor actividad criminal
+
+                    <br>
+                <small>
+                [19:00 a 23:00] con un 70% de la actividad total
+              </small>
+                </h4>
+              </ion-item>
+        
+        
+            </ion-list>
+
+
 <ngx-charts-pie-chart
 [view]="view"
 [scheme]="colorScheme"
