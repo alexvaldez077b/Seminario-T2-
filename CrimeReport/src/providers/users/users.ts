@@ -30,8 +30,8 @@ export class UsersProvider {
   currentUser: User;
   token = '2e1iX4Cs8VTGx0NCDMtG2pFQ+Yne5iP8Ah8VkVs+9PI=';
 
-  url = "https://crime-report-api.000webhostapp.com/api/";
-  //url = "http://localhost:8000/api/";
+  //url = "https://crime-report-api.000webhostapp.com/api/";
+  url = "http://localhost:8000/api/";
 
   constructor(public http: Http) {
     //console.log('Hello authProvider Provider');
@@ -78,17 +78,43 @@ export class UsersProvider {
       }
     }
 
-  public register(credentials) {
-    if (credentials.email === null || credentials.password === null) {
-      return Observable.throw("Please insert credentials");
-    } else {
-      // At this point store the credentials to your backend!
-      return Observable.create(observer => {
-        observer.next(true);
-        observer.complete();
-      });
+    public register(credentials) {
+      if (credentials.email === null || credentials.password === null) {
+        return Observable.throw("Please insert credentials");
+      } else {
+        return Observable.create(observer => {
+          // At this point make a request to your backend to make a real check!
+
+          jQuery.ajax({
+              'method': 'post',
+              'url': `${this.url}register`,
+              'data': { _token: this.token,
+                        username: credentials.name,
+                        email: credentials.email,
+                        password: credentials.password },
+              success: (res)=>{
+
+                let data = JSON.parse(res);
+
+                if(data.access == true){
+                  this.currentUser = new User(data.id,data.username, data.email);
+                }
+
+                observer.next(data);
+                observer.complete();
+
+              },
+              error: (x,y,z)=>{
+                //console.log(x);
+                //console.log(y);
+                //console.log(z);
+              }
+            });
+
+
+        });
+      }
     }
-  }
 
   public getUserInfo() : User {
     return this.currentUser;

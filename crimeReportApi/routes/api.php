@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 Route::post('/login','apiLogin@login');
+Route::post('/register','apiLogin@register');
 
 Route::get('/getnews','apiLogin@getNews');
 

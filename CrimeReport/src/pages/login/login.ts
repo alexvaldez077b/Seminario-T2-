@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs'
+import { RegisterPage } from '../register/register'
 
 import 'rxjs/add/operator/map';
 
@@ -51,6 +52,12 @@ export class LoginPage {
 
   }
 
+  register(){
+
+    this.navCtrl.push(RegisterPage);
+
+  }
+
   showLoading() {
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...',
@@ -67,7 +74,7 @@ export class LoginPage {
       subTitle: text,
       buttons: ['OK']
     });
-    alert.present(prompt);
+    alert.present();
   }
 
 }

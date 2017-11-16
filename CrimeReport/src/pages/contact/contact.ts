@@ -12,7 +12,7 @@ export class ContactPage {
   @ViewChild(Content) content: Content;
   datestart = "2017-10-01";
   dateend = "2017-10-20"
-   single = [
+  single = [
     {
       "name": "Homicidio",
       "value": 3
@@ -53,23 +53,23 @@ export class ContactPage {
       "name": "tiroteos",
       "value": 9
     },
-    
+
 
   ];
   multi: any[];
 
   view: any[] = [700, 400];
 
-    // options
-    showLegend = 0; 
-    colorScheme = {
-      domain: ['#5AA454', '#A10A28', '#C7B42C']
-    };
-  
-    // pie
-    showLabels = true;
-    explodeSlices = false;
-    doughnut = false;
+  // options
+  showLegend = 0;
+  colorScheme = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C']
+  };
+
+  // pie
+  showLabels = true;
+  explodeSlices = false;
+  doughnut = false;
 
 
   constructor(public navCtrl: NavController) {
@@ -84,16 +84,16 @@ export class ContactPage {
   }
 
   applyDimensions() {
-    const width = this.content.getContentDimensions().contentWidth ;
+    const width = this.content.getContentDimensions().contentWidth;
     const state = width >= 320;
-    
-  
+
+
     this.view = [width, 300];
   }
 
-  showTrend(data){
-  	//let modal =
-    this.navCtrl.push(DetailTrendPage, {data: data});
+  showTrend(data) {
+    //let modal =
+    this.navCtrl.push(DetailTrendPage, { data: data });
   }
 
 }

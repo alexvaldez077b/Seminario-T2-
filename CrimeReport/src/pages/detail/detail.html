@@ -15,55 +15,55 @@
 
 <ion-content padding>
 
-    <div  style=" width:100%; heigth:30%; " #map id="map"></div>
-    
-    <ion-list *ngFor="let new of post"  >
+  <div style=" width:100%; heigth:30%; " #map id="map"></div>
 
-      
-          <ion-item>
-            <ion-avatar item-start>
-              <img src="https://cdn.pixabay.com/photo/2017/02/25/22/04/user-icon-2098873_960_720.png">
-            </ion-avatar>
-            <h2  >{{new.title}}</h2>
-            <p>{{new.at}}</p>
-          </ion-item>
-          
-          <ion-item>
-              
-          </ion-item>
+  <ion-list *ngFor="let new of post">
 
-          <ion-slides pager>
 
-            <ion-slide *ngFor="let photo of media" >
-              <img src={{photo.path}} >
-            </ion-slide>
-            
-          </ion-slides>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="https://cdn.pixabay.com/photo/2017/02/25/22/04/user-icon-2098873_960_720.png">
+      </ion-avatar>
+      <h2>{{new.title}}</h2>
+      <p>{{new.at}}</p>
+    </ion-item>
 
-          <ion-card-content>
-            <p>{{new.description}}</p>
-          </ion-card-content>
-        
-          <ion-row>
-            <ion-col>
-              <button ion-button color="danger" clear small icon-start>
-                <ion-icon color="danger" name='ios-radio-outline'></ion-icon>
-                Alert
-              </button>
-            </ion-col>
-            <!--ion-col>
+    <ion-item>
+
+    </ion-item>
+
+    <ion-slides pager>
+
+      <ion-slide *ngFor="let photo of media">
+        <img src={{photo.path}}>
+      </ion-slide>
+
+    </ion-slides>
+
+    <ion-card-content>
+      <p>{{new.description}}</p>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button color="danger" clear small icon-start>
+          <ion-icon color="danger" name='ios-radio-outline'></ion-icon>
+          Alert
+        </button>
+      </ion-col>
+      <!--ion-col>
               <button ion-button color="primary" clear small icon-start>
                 <ion-icon name='text'></ion-icon>
                 N Comments
               </button>
             </ion-col-->
-            <ion-col align-self-center text-center>
-              <ion-note>
-                Published: {{new.created_at}}
-              </ion-note>
-            </ion-col>
-          </ion-row>
-        
-        </ion-list>
+      <ion-col align-self-center text-center>
+        <ion-note>
+          Published: {{new.created_at}}
+        </ion-note>
+      </ion-col>
+    </ion-row>
+
+  </ion-list>
 
 </ion-content>
